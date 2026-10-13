@@ -19,7 +19,7 @@ from routers.orders import router as orders_router
 
 app = FastAPI(
     title="E-Commerce Backend APIs",
-    description="E-Commerce backend using FastAPI, OracleDB, PostgreSQL and SQLAlchemy",
+    description="E-Commerce backend using FastAPI, OracleDB and PostgreSQL and SQLAlchemy",
     version="1.0.0"
 )
 
