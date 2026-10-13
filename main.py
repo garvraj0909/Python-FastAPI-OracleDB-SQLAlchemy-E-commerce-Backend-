@@ -35,5 +35,5 @@ app.include_router(orders_router)
 @app.get("/")
 def root():
     return {
-        "message": "E-Commerce API is running"
+        "message": "E-Commerce Backend APIs are running"
     }
