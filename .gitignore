@@ -1,0 +1,44 @@
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Test and coverage files
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE and editor settings
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Build and distribution files
+build/
+dist/
+*.egg-info/
+
+# Local database and backup files
+*.db
+*.sqlite
+*.sqlite3
+*.bak
+
+# Alembic-generated Python cache
+alembic/versions/__pycache__/
