@@ -1,60 +1,45 @@
-from datetime import datetime
-
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, Field, ConfigDict
+from typing import Optional
+from decimal import Decimal
 
 
 class OrderItemCreate(BaseModel):
-    product_id: int
-    quantity: int
+    product_id: int = Field(gt=0)
+    quantity: int = Field(gt=0)
 
 
 class OrderCreate(BaseModel):
-    user_id: int
-    items: list[OrderItemCreate]
+    items: list[OrderItemCreate] = Field(min_length=1)
 
 
 class OrderItemResponse(BaseModel):
     id: int
     product_id: int
     quantity: int
-    price: float
+    price: Decimal
 
-    model_config = ConfigDict(
-        from_attributes=True
-    )
+    model_config = ConfigDict(from_attributes=True)
+
+
+class OrderTrackingResponse(BaseModel):
+    id: int
+    status: str
+    description: Optional[str] = None
+
+    model_config = ConfigDict(from_attributes=True)
 
 
 class TrackingUpdate(BaseModel):
-    status: str
-
-
-class TrackingResponse(BaseModel):
-    status: str
-    message: str
-    timestamp: datetime
-
-    model_config = ConfigDict(
-        from_attributes=True
-    )
+    status: str = Field(min_length=1)
+    description: Optional[str] = None
 
 
 class OrderResponse(BaseModel):
     id: int
     user_id: int
-    items: list[OrderItemResponse]
-    total: float
+    total: Decimal
     status: str
+    items: list[OrderItemResponse] = Field(default_factory=list)
+    tracking: list[OrderTrackingResponse] = Field(default_factory=list)
 
-    model_config = ConfigDict(
-        from_attributes=True
-    )
-
-
-class OrderTrackingResponse(BaseModel):
-    order_id: int
-    current_status: str
-    tracking: list[TrackingResponse]
-
-    model_config = ConfigDict(
-        from_attributes=True
-    )
+    model_config = ConfigDict(from_attributes=True)
